@@ -8,7 +8,18 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
+    minimumCacheTTL: 60, // Cache images for at least 60 seconds
+    unoptimized: false, // Ensure Next.js still optimizes images
   },
 };
 
