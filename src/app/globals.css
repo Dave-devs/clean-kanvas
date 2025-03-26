@@ -3,41 +3,54 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-}
+@layer theme {
+  :root {
+    --font-display: "Inter", "sans-serif"
+      --breakpoint-2xl: 1400px;
 
-:root {
-  --radius: 1rem;
+    /* Border Radius */
+    --radius: 1rem;
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.15 0 240);
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.15 0 240);
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 240);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.15 0 240);
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 240);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.15 0 240);
 
-  --primary: oklch(0.7 0.22 230);
-  --primary-foreground: oklch(0.98 0 0);
+    /* --primary: oklch(0.7 0.22 230); */
+    --primary: #0A85FF;
+    --primary-foreground: oklch(0.98 0 0);
 
-  --secondary: oklch(0.94 0.02 230);
-  --secondary-foreground: oklch(0.15 0 240);
+    --secondary: oklch(0.94 0.02 230);
+    --secondary-foreground: oklch(0.15 0 240);
 
-  --muted: oklch(0.93 0.01 240);
-  --muted-foreground: oklch(0.55 0.01 240);
+    --muted: oklch(0.93 0.01 240);
+    --muted-foreground: oklch(0.55 0.01 240);
 
-  --accent: oklch(0.7 0.22 230);
-  --accent-foreground: oklch(0.2 0.02 240);
+    --accent: oklch(0.7 0.22 230);
+    --accent-foreground: oklch(0.2 0.02 240);
 
-  --destructive: oklch(0.65 0.25 30);
-  --destructive-foreground: oklch(0.98 0 0);
+    --destructive: oklch(0.65 0.25 30);
+    --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(0.85 0.01 240);
-  --input: oklch(0.85 0.01 240);
-  --ring: oklch(0.2 0.02 240);
+    --border: oklch(0.85 0.01 240);
+    --input: oklch(0.85 0.01 240);
+    --ring: oklch(0.2 0.02 240);
+    /* Background Image Patterns */
+    --gradient-radial: radial-gradient(var(--tw-gradient-stops));
+    --hero-pattern: linear-gradient(120deg, #e0f2fe 0%, #f0f9ff 30%, #ffffff 70%);
+
+    /* Box Shadows */
+    --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --shadow-elevated: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+    --shadow-button: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.02);
+  }
 }
 
 .dark {
@@ -112,10 +125,17 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-medium tracking-tight;
   }
 }
@@ -124,22 +144,21 @@
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
   }
+
   .glass {
     @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-sm;
   }
+
   .animated-gradient {
-    background: linear-gradient(
-      90deg,
-      oklch(0.7 0.22 270) 0%,
-      oklch(0.6 0.25 240) 50%,
-      oklch(0.65 0.2 220) 100%
-    );
+    background: linear-gradient(90deg, #8B5CF6 0%, #3B82F6 50%, #0EA5E9 100%);
     background-size: 200% 200%;
     animation: gradient 5s ease infinite;
   }
+
   .heading-highlight {
     @apply relative inline-block;
   }
+
   .heading-highlight:after {
     content: "";
     @apply absolute bottom-0 left-0 w-full h-[8px] bg-accent/30 -z-10;
@@ -150,8 +169,29 @@
   .text-balance {
     text-wrap: balance;
   }
+
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[oklch(0.6_0.25_240)] to-[oklch(0.7_0.22_270)];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500;
+  }
+
+  .bg-gradient-radial {
+    background-image: var(--gradient-radial);
+  }
+
+  .bg-hero-pattern {
+    background-image: var(--hero-pattern);
+  }
+
+  .shadow-subtle {
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .shadow-button {
+    box-shadow: var(--shadow-button);
   }
 }
 
@@ -159,9 +199,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -175,6 +217,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -189,6 +232,7 @@
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -204,6 +248,7 @@
     transform: translateX(50px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;

@@ -18,7 +18,7 @@ const Features = () => {
                   {features.map((feature, index) => (
                       <div
                           key={index}
-                          className="p-6 rounded-xl bg-white border border-gray-100 shadow-subtle hover:shadow-elevated transition-shadow duration-300"
+                          className="p-6 rounded-lg bg-white border border-gray-100 shadow-subtle hover:scale-105 transition-all duration-300"
                       >
                           <div className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-50 mb-4">
                               {feature.icon}

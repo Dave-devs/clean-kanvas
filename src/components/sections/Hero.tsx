@@ -43,8 +43,6 @@ const Hero = () => {
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
                   alt="Image with background removed"
                   className="w-full h-full object-cover"
-                  width={100} height={100}
-                  loading="lazy"
                 />
                 {/* Visual element overlay to simulate background removal process */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/20 animate-shimmer"></div>

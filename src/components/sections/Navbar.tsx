@@ -70,7 +70,7 @@ const Navbar = () => {
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open mobile menu"
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="size-6" />
             </Button>
           </div>
         </nav>
@@ -86,7 +86,7 @@ const Navbar = () => {
               onClick={() => setMobileMenuOpen(false)}
               aria-label="Close mobile menu"
             >
-              <X className="h-6 w-6" />
+              <X className="size-6" />
             </Button>
           </div>
           <nav className="flex flex-col items-center justify-center space-y-8 h-full">
