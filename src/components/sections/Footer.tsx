@@ -7,7 +7,7 @@ const Footer = () => {
       <div className='section-container'>
         <div className='grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12'>
           <div className='md:col-span-1'>
-            <Link href="#" className='text-2xl font-semibold text-foreground'>
+            <Link href="/" className='text-2xl font-semibold text-foreground'>
               clean<span className="text-primary">kanvas</span>
             </Link>
             <p className='mt-4 text-foreground/70'>

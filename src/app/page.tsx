@@ -7,7 +7,7 @@ import Pricing from '@/components/sections/Pricing';
 
 const Home = () => {
   return (
-    <main id='/#' className='flex-grow'>
+    <main id='#' className='flex-grow'>
       <Hero />
       <Features />
       <HowItWorks />

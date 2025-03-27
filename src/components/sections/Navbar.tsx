@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "../ui-custom/Button";
 import { X, Menu } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,35 +32,38 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="#" className="text-2xl font-semibold text-foreground">
+            <Link href="/" className="text-2xl font-semibold text-foreground">
               clean<span className="text-primary">kanvas</span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center space-x-8 font-medium">
-            <a
+            <Link
               href="#features"
               className="text-foreground/80 hover:text-foreground transition-colors"
             >
               Features
-            </a>
-            <a
+            </Link>
+            <Link
               href="#how-it-works"
               className="text-foreground/80 hover:text-foreground transition-colors"
             >
               How It Works
-            </a>
-            <a
+            </Link>
+            <Link
               href="#pricing"
               className="text-foreground/80 hover:text-foreground transition-colors"
             >
               Pricing
-            </a>
+            </Link>
             <Button variant="outline" size="default">
               Sign In
             </Button>
-            <Button>Try for Free</Button>
+            <Link href={"/upload"}>
+              <Button>Try for Free</Button>
+            </Link>
+            
           </div>
 
           {/* Mobile menu button */}
@@ -90,27 +94,27 @@ const Navbar = () => {
             </Button>
           </div>
           <nav className="flex flex-col items-center justify-center space-y-8 h-full">
-            <a
+            <Link
               href="#features"
               className="text-xl font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               Features
-            </a>
-            <a
+            </Link>
+            <Link
               href="#how-it-works"
               className="text-xl font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               How It Works
-            </a>
-            <a
+            </Link>
+            <Link
               href="#pricing"
               className="text-xl font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               Pricing
-            </a>
+            </Link>
             <div className="flex flex-col space-y-4 pt-4 w-full max-w-[200px]">
               <Button variant="outline" size="lg" className="w-full">
                 Sign In
