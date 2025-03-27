@@ -15,9 +15,11 @@ const UploadImage = () => {
     const [progress, setProgress] = useState(0);
     const { toast } = useToast();
 
+    // Handlers for when files are dropped or selected
     const onDrop = async (acceptedFiles: File[]) => {
         if (acceptedFiles.length === 0) return;
 
+        // Validate if the uploaded file is an image
         const file = acceptedFiles[0];
         if (!file.type.startsWith('image/')) {
             toast({
@@ -28,12 +30,14 @@ const UploadImage = () => {
             return;
         }
 
+        // Set the original image and reset processed image state
         setOriginalImage(URL.createObjectURL(file));
         setProcessedImage(null);
         setProgress(0);
         await processImage(file)
     }
 
+    // Configure dropzone with accepted file types and limits
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
         accept: {
@@ -42,15 +46,18 @@ const UploadImage = () => {
         maxFiles: 1
     });
 
+    // Function to process the image and remove background
     const processImage = async (file: File) => {
         try {
             setIsProcessing(true);
             setProgress(20);
 
+            // Prepare form data for API request
             const formData = new FormData();
             formData.append("image", file);
 
             setProgress(40);
+            // Send image to backend API for processing
             const response = await fetch("/api/remove-bg", {
                 method: "POST",
                 body: formData,
@@ -62,6 +69,7 @@ const UploadImage = () => {
                 throw new Error("Failed to process image");
             }
 
+            // Convert response to blob and create URL
             const blob = await response.blob();
             setProcessedImage(URL.createObjectURL(blob));
             setProgress(100);
@@ -74,7 +82,7 @@ const UploadImage = () => {
             console.error(error)
             toast({
                 title: "Error",
-                description: `Failed to process image. Please try again. ${error}`,
+                description: "Failed to process image. Please try again.",
                 variant: "destructive"
             })
         } finally {
@@ -99,8 +107,8 @@ const UploadImage = () => {
                     {/* Upload Section */}
                     <div className="space-y-4 sm:space-y-6">
                         <div {...getRootProps()} className={`border-2 border-dashed rounded-lg p-6 sm:p-8 md:p-12 transition-all duration-200 hover:border-primary/70 ${isDragActive
-                                ? 'border-primary bg-primary/5 scale-[0.99]'
-                                : 'border-gray-300'
+                            ? 'border-primary bg-primary/5 scale-[0.99]'
+                            : 'border-gray-300'
                             }`}>
                             <input {...getInputProps()} />
                             <div className="text-center">
