@@ -45,7 +45,10 @@ const HowItWorks = () => {
                             </div>
 
                             <div className="w-full md:w-1/2">
-                                <div className="glass rounded-2xl overflow-hidden shadow-elevated">
+                                <div className={`glass rounded-2xl overflow-hidden shadow-elevated ${index !== steps.length - 1
+                                    ? 'bg-accent-foreground/90'
+                                    : 'bg-[conic-gradient(#333333_90deg,#666666_90deg_180deg,#333333_180deg_270deg,#666666_270deg)] bg-[length:10px_10px]'
+                                    }`}>
                                     <img
                                         src={step.image}
                                         alt={step.title}

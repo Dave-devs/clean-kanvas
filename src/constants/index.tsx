@@ -37,19 +37,19 @@ export const steps = [
         number: "01",
         title: "Upload your image",
         description: "Drag and drop or select an image from your computer. Supports JPG, PNG, and WEBP.",
-        image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+        image: "/image-1.jpeg",
     },
     {
         number: "02",
         title: "Automatic processing",
         description: "Our AI instantly detects and removes the background with precision.",
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+        image: "/image-2.png",
     },
     {
         number: "03",
         title: "Download result",
         description: "Download your image with a transparent background in your preferred format.",
-        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+        image: "/image-3.png",
     },
 ];
 
