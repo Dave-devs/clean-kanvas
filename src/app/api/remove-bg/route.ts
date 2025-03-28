@@ -12,43 +12,40 @@ export async function POST(req: Request) {
       );
     }
 
-    const REMOVE_BG_API_KEY = process.env.REMOVE_BG_API_KEY;
+    // Create a new FormData instance for the ClipDrop API
+    const clipDropFormData = new FormData();
+    clipDropFormData.append("image_file", image);
 
-    if (!REMOVE_BG_API_KEY) {
-      return NextResponse.json(
-        { error: "API key not configured" },
-        { status: 500 }
-      );
-    }
-
-    const imageBuffer = Buffer.from(await image.arrayBuffer());
-
-    const response = await fetch("https://api.remove.bg/v1.0/removebg", {
-      method: "POST",
-      headers: {
-        "X-Api-Key": REMOVE_BG_API_KEY,
-      },
-      body: imageBuffer,
-    });
+    const response = await fetch(
+      "https://clipdrop-api.co/remove-background/v1",
+      {
+        method: "POST",
+        headers: {
+          "x-api-key": process.env.CLIPDROP_API_KEY || "",
+        },
+        body: clipDropFormData,
+      }
+    );
 
     if (!response.ok) {
-      return NextResponse.json(
-        { error: "Failed to remove background" },
-        { status: response.status }
-      );
+      const errorText = await response.text();
+      console.error("ClipDrop API error:", errorText);
+      throw new Error(`Failed to process image: ${errorText}`);
     }
 
-    const processedImage = await response.arrayBuffer();
+    const processedImageBuffer = await response.arrayBuffer();
 
-    return new NextResponse(processedImage, {
+    return new NextResponse(processedImageBuffer, {
       headers: {
         "Content-Type": "image/png",
       },
     });
   } catch (error) {
-    console.log("Error processing image: ", error);
+    console.error("Error processing image:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      {
+        error: error instanceof Error ? error.message : "Internal server error",
+      },
       { status: 500 }
     );
   }
