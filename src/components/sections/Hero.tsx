@@ -36,14 +36,15 @@ const Hero = () => {
           </div>
 
           <div className="relative slide-in-right">
-            <div className="absolute inset-0 bg-gradient-radial from-blue-500/10 to-transparent rounded-3xl animate-pulse" style={{ animationDuration: "4s" }}></div>
+            <div className="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent rounded-3xl animate-pulse" style={{ animationDuration: "4s" }}></div>
             <div className="relative glass rounded-3xl p-1 shadow-elevated overflow-hidden">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
                 <img
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+                  src="/hero-image.jpg"
                   alt="Image with background removed"
                   className="w-full h-full object-cover"
                 />
+                
                 {/* Visual element overlay to simulate background removal process */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/20 animate-shimmer"></div>
               </div>
