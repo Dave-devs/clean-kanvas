@@ -49,7 +49,7 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/20 animate-shimmer"></div>
               </div>
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 glass px-4 py-2 rounded-full text-sm font-medium shadow-subtle">
-                Powered by State-of-the-Art AI
+                Powered by ClipDrop AI
               </div>
             </div>
           </div>
