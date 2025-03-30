@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { Button } from "../ui-custom/Button";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const Hero = () => {
   return (
@@ -9,42 +11,68 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 max-w-2xl">
             <div className="space-y-6">
-              <div className="inline-block bg-blue-100 text-primary px-3 py-1 rounded-full text-sm font-medium slide-up" style={{ animationDelay: "0.1s" }}>
+              <div
+                className="inline-block bg-blue-100 text-primary px-3 py-1 rounded-full text-sm font-medium slide-up"
+                style={{ animationDelay: "0.1s" }}
+              >
                 Professional-grade AI
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight slide-up" style={{ animationDelay: "0.2s" }}>
-                Remove backgrounds from images <span className="heading-highlight">instantly</span>
+              <h1
+                className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight slide-up"
+                style={{ animationDelay: "0.2s" }}
+              >
+                Remove backgrounds from images{" "}
+                <span className="heading-highlight">instantly</span>
               </h1>
-              <p className="text-lg text-foreground/80 slide-up" style={{ animationDelay: "0.3s" }}>
-                Perfect, pixel-perfect background removal in seconds. No more tedious manual editing. Just upload, remove, and download.
+              <p
+                className="text-lg text-foreground/80 slide-up"
+                style={{ animationDelay: "0.3s" }}
+              >
+                Perfect, pixel-perfect background removal in seconds. No more
+                tedious manual editing. Just upload, remove, and download.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 slide-up" style={{ animationDelay: "0.4s" }}>
-              <Button size="lg" className="group">
-                Try for Free
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+            <div
+              className="flex flex-col sm:flex-row gap-4 slide-up"
+              style={{ animationDelay: "0.4s" }}
+            >
+              <Link href={"/upload"}>
+                <Button size="lg" className="group">
+                  Try for Free
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+
               <Button variant="outline" size="lg">
                 See Examples
               </Button>
             </div>
 
-            <div className="pt-4 text-sm text-foreground/60 slide-up" style={{ animationDelay: "0.5s" }}>
+            <div
+              className="pt-4 text-sm text-foreground/60 slide-up"
+              style={{ animationDelay: "0.5s" }}
+            >
               No credit card required. 5 free images per month.
             </div>
           </div>
 
           <div className="relative slide-in-right">
-            <div className="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent rounded-3xl animate-pulse" style={{ animationDuration: "4s" }}></div>
+            <div
+              className="absolute inset-0 bg-gradient-radial from-primary/10 to-transparent rounded-3xl animate-pulse"
+              style={{ animationDuration: "4s" }}
+            ></div>
             <div className="relative glass rounded-3xl p-1 shadow-elevated overflow-hidden">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
-                <img
+                <Image
                   src="/hero-image.jpg"
                   alt="Image with background removed"
                   className="w-full h-full object-cover"
+                  width={800}
+                  height={600}
+                  quality={100}
                 />
-                
+
                 {/* Visual element overlay to simulate background removal process */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/20 animate-shimmer"></div>
               </div>

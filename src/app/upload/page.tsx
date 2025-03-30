@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useToast } from "@/hooks/use-taost";
@@ -7,6 +6,7 @@ import { useDropzone } from "react-dropzone";
 import { ImageIcon, Loader2, Upload } from "lucide-react";
 import { Button } from "@/components/ui-custom/Button";
 import { Progress } from "@/components/ui/progress";
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -152,9 +152,11 @@ const UploadImage = () => {
               {originalImage && (
                 <div className="relative rounded-lg overflow-hidden bg-blue-50">
                   <div className="aspect-[4/3]">
-                    <img
+                    <Image
                       src={originalImage}
                       alt="Original"
+                      width={400}
+                      height={400}
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -192,9 +194,12 @@ const UploadImage = () => {
               {processedImage ? (
                 <div className="relative rounded-lg overflow-hidden bg-[url('/checkerboard.png')]">
                   <div className="aspect-[4/3]">
-                    <img
+                 
+                    <Image
                       src={processedImage}
                       alt="Processed"
+                      width={800}
+                      height={600}
                       className="w-full h-full object-contain"
                     />
                   </div>
