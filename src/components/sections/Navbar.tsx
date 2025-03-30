@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import { Button } from "../ui-custom/Button";
@@ -24,10 +24,11 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
           ? "py-3 bg-white/80 backdrop-blur-lg shadow-sm"
           : "py-5 bg-transparent"
-        }`}
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between">
@@ -45,12 +46,14 @@ const Navbar = () => {
             >
               Features
             </Link>
+
             <Link
               href="#how-it-works"
               className="text-foreground/80 hover:text-foreground transition-colors"
             >
               How It Works
             </Link>
+
             <Link
               href="#pricing"
               className="text-foreground/80 hover:text-foreground transition-colors"
@@ -63,7 +66,6 @@ const Navbar = () => {
             <Link href={"/upload"}>
               <Button>Try for Free</Button>
             </Link>
-            
           </div>
 
           {/* Mobile menu button */}
@@ -77,6 +79,7 @@ const Navbar = () => {
               <Menu className="size-6" />
             </Button>
           </div>
+
         </nav>
       </div>
 
@@ -116,7 +119,11 @@ const Navbar = () => {
               Pricing
             </Link>
             <div className="flex flex-col space-y-4 pt-4 w-full max-w-[200px]">
-              <Button variant="outline" size="lg" className="w-full">
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full"
+              >
                 Sign In
               </Button>
               <Button size="lg" className="w-full">
