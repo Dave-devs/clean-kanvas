@@ -73,13 +73,13 @@ const addToRemoveQueue = (toastId: string) => {
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case "ADD_TOAST":
+    case ACTION_TYPES.ADD_TOAST: // Use ACTION_TYPES here
       return {
         ...state,
         toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT),
       };
 
-    case "UPDATE_TOAST":
+    case ACTION_TYPES.UPDATE_TOAST:
       return {
         ...state,
         toasts: state.toasts.map((t) =>
@@ -87,32 +87,23 @@ export const reducer = (state: State, action: Action): State => {
         ),
       };
 
-    case "DISMISS_TOAST": {
+    case ACTION_TYPES.DISMISS_TOAST: {
       const { toastId } = action;
-
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId);
       } else {
-        state.toasts.forEach((toast) => {
-          addToRemoveQueue(toast.id);
-        });
+        state.toasts.forEach((toast) => addToRemoveQueue(toast.id));
       }
 
       return {
         ...state,
         toasts: state.toasts.map((t) =>
-          t.id === toastId || toastId === undefined
-            ? {
-                ...t,
-                open: false,
-              }
-            : t
+          t.id === toastId || toastId === undefined ? { ...t, open: false } : t
         ),
       };
     }
-    case "REMOVE_TOAST":
+
+    case ACTION_TYPES.REMOVE_TOAST:
       if (action.toastId === undefined) {
         return {
           ...state,
@@ -125,6 +116,62 @@ export const reducer = (state: State, action: Action): State => {
       };
   }
 };
+
+
+// export const reducer = (state: State, action: Action): State => {
+//   switch (action.type) {
+//     case "ADD_TOAST":
+//       return {
+//         ...state,
+//         toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT),
+//       };
+
+//     case "UPDATE_TOAST":
+//       return {
+//         ...state,
+//         toasts: state.toasts.map((t) =>
+//           t.id === action.toast.id ? { ...t, ...action.toast } : t
+//         ),
+//       };
+
+//     case "DISMISS_TOAST": {
+//       const { toastId } = action;
+
+//       // ! Side effects ! - This could be extracted into a dismissToast() action,
+//       // but I'll keep it here for simplicity
+//       if (toastId) {
+//         addToRemoveQueue(toastId);
+//       } else {
+//         state.toasts.forEach((toast) => {
+//           addToRemoveQueue(toast.id);
+//         });
+//       }
+
+//       return {
+//         ...state,
+//         toasts: state.toasts.map((t) =>
+//           t.id === toastId || toastId === undefined
+//             ? {
+//                 ...t,
+//                 open: false,
+//               }
+//             : t
+//         ),
+//       };
+//     }
+//     case "REMOVE_TOAST":
+//       if (action.toastId === undefined) {
+//         return {
+//           ...state,
+//           toasts: [],
+//         };
+//       }
+//       return {
+//         ...state,
+//         toasts: state.toasts.filter((t) => t.id !== action.toastId),
+//       };
+//   }
+// };
 
 const listeners: Array<(state: State) => void> = [];
 
