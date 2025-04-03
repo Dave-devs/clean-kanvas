@@ -1,4 +1,4 @@
-import { CheckCircle, Image, Zap, LayoutGrid, CloudOff, Download } from "lucide-react";
+import { CheckCircle, Image as LucidImage, Zap, LayoutGrid, CloudOff, Download } from "lucide-react";
 export const features = [
     {
         icon: <Zap className="size-6 text-blue-500" />,
@@ -6,7 +6,7 @@ export const features = [
         description: "Remove backgrounds in seconds with our advanced AI technology, no waiting required.",
     },
     {
-        icon: <Image className="size-6 text-blue-500" />,
+        icon: <LucidImage className="size-6 text-blue-500" />,
         title: "Pixel-Perfect Results",
         description: "Our AI precisely detects edges and maintains fine details like hair and transparent objects.",
     },
